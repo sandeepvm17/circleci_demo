@@ -1,4 +1,4 @@
-# Multiple CircleCI Orbs Pipeline Configuration.
+# Multiple CircleCI Orbs Pipeline Configuration
 
 [![CircleCI](https://circleci.com/gh/CIRCLECI-GWP/circleci-multiple-orbs-config.svg?style=svg)](https://circleci.com/gh/CIRCLECI-GWP/circleci-multiple-orbs-config)
 
