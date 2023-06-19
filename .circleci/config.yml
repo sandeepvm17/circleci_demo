@@ -55,7 +55,7 @@
                 pwd
                 ls
                 env
-                docker run -it -n owasp_zap_test_config.yaml --rm -v $PWD:/zap/wrk owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html              
+                docker run -it --rm -v $PWD:/zap/wrk owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -n "Default Context.context" -r report.html              
                 cat report.html
         - store_artifacts:
             path: /zap/wrk
