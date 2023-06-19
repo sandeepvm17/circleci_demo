@@ -30,12 +30,25 @@ jobs:
           command: |
             npm run test
           working_directory: ~/project/nodejs-cli
-
+  scan:
+    docker:
+      - image: owasp/zap2docker-stable
+    steps:
+      - run:
+            command: |
+              mkdir /zap/wrk
+              #zap-full-scan.py -t https://target-url -r report.html              
+              cat report.html
+      - store_artifacts:
+          path: /zap/wrk
+          destination: zap-report
+          
 workflows:
   test:
     jobs:
       - test-python-app
       - test-node-app
+      - scan
 
 
 ####################### Without Orbs ########################
