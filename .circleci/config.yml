@@ -47,7 +47,7 @@
 
     test-scan:
       docker:
-        - image: owasp/zap2docker-stable
+        - image: cimg/base:current
       steps:
         - checkout
         - run:
@@ -56,7 +56,7 @@
                 ls
                 env
                 mkdir /zap/wrk
-                zap-baseline.py -t https://resellerportal.develop.redeam.io/ -n "Default Context.context" -r report.html              
+                docker run -v $PWD:/zap/wrk:rw owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html              
                 cat report.html
         - store_artifacts:
             path: /zap/wrk
