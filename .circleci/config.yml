@@ -47,7 +47,7 @@ docker pull ubuntu version: 2.1
 
    test-scan:
      docker:
-       - image: cimg/base:2021.04
+       - image: cimg/base:current
      steps:
        - checkout
        - run:
