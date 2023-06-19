@@ -1,11 +1,11 @@
 ---
 env:
   contexts:
-  - name: "Default Context"
+  -name: "Default Context"
     urls:
-    - "https://resellerportal.develop.redeam.io"
+    -"https://resellerportal.develop.redeam.io"
     includePaths:
-    - "https://resellerportal.develop.redeam.io.*"
+    -"https://resellerportal.develop.redeam.io.*"
     excludePaths: []
     authentication:
       method: "json"
@@ -25,7 +25,7 @@ env:
       method: "cookie"
       parameters: {}
     users:
-    - name: "admin"
+    -name: "admin"
       credentials:
         password: "cybage@123"
         username: "pentestla@mail.com"
@@ -35,41 +35,41 @@ env:
     progressToStdout: true
   vars: {}
 jobs:
-- parameters:
+-parameters:
     scanOnlyInScope: true
     enableTags: false
   rules: []
   name: "passiveScan-config"
   type: "passiveScan-config"
-- parameters: {}
+-parameters: {}
   name: "spider"
   type: "spider"
   tests:
-  - onFail: "INFO"
+  -onFail: "INFO"
     statistic: "automation.spider.urls.added"
     site: ""
     operator: ">="
     value: 100
     name: "At least 100 URLs found"
     type: "stats"
-- parameters:
+-parameters:
     maxDuration: 60
     maxCrawlDepth: 10
     numberOfBrowsers: 1
   name: "spiderAjax"
   type: "spiderAjax"
   tests:
-  - onFail: "INFO"
+  -onFail: "INFO"
     statistic: "spiderAjax.urls.added"
     site: ""
     operator: ">="
     value: 100
     name: "At least 100 URLs found"
     type: "stats"
-- parameters: {}
+-parameters: {}
   name: "passiveScan-wait"
   type: "passiveScan-wait"
-- parameters:
+-parameters:
     template: "risk-confidence-html"
     reportDir: "C:\\Users\\admin"
     reportTitle: "ZAP Scanning Report"
