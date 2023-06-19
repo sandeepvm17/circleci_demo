@@ -1,60 +1,3 @@
-############################# Multiple Orbs ###############################
-#version: 2.1
-
-#orbs:
- # node: circleci/node@5.0.2
- # python: circleci/python@2.0.3
-
-#jobs:
- # test-python-app:
-  #  executor: python/default
-   # steps:
-    #  - checkout
-     # - python/install-packages:
-      #    app-dir: ~/project/flask-api
-      #   pip-dependency-file: requirements.txt
-      #    pkg-manager: pip
-      #- run:
-      #    command: |
-      #      pytest -v
-      #    name: Test
-  #test-node-app:
-  #  executor: node/default
-  #  steps:
-  #   - checkout
-  #    - node/install-packages:
-  #       app-dir: ~/project/nodejs-cli
-  #       cache-path: ~/project/nodejs-cli/node_modules
-  #       override-ci-command: npm install
-  #   - run:
-  #       command: |
-  #         npm run test
-  #       working_directory: ~/project/nodejs-cli
-  #scan:
-  # docker:
-  #   - image: owasp/zap2docker-stable
-  # steps:
-  #   - checkout
-  #   - run:
-  #         command: |
-  #           pwd |xargs echo
-  #           mkdir /zap/wrk                       
-  #           cat report.html
-  #   - store_artifacts:
-  #       path: /zap/wrk
-  #       destination: zap-report
-          
-#workflows:
-# test:
-#   jobs:
-#     - test-python-app
-#     - test-node-app
-#     - scan
-
-
-####################### Without Orbs ########################
-
-
  version: 2.1
  jobs:
    test-python-app:
@@ -102,23 +45,23 @@
        - store_artifacts:
            path: ~/palatial-cakes-cli/__tests__
 
-   scan:
-   docker:
-     - image: owasp/zap2docker-stable
-   steps:
-     - checkout
-     - run:
-           command: |
-             pwd |xargs echo
-             mkdir /zap/wrk                       
-             cat report.html
-     - store_artifacts:
-         path: /zap/wrk
-         destination: zap-report
+   test-scan:
+     docker:
+       - image: owasp/zap2docker-stable
+     steps:
+       - checkout
+       - run:
+             command: |
+               pwd
+               mkdir /zap/wrk                       
+               cat report.html
+       - store_artifacts:
+           path: /zap/wrk
+           destination: zap-report
 
  workflows:
    test:
      jobs:
        - test-python-app
        - test-node-app
-       - scan
+       - test-scan
