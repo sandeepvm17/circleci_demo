@@ -53,8 +53,9 @@
        - run:
              command: |
                pwd
-               mkdir /zap/wrk                       
-               docker run -it --env-file owasp_zap_test_config.yaml --rm -v $PWD:/zap/wrk owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html
+               mkdir /zap/wrk
+               ls
+               zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html
                cat report.html
        - store_artifacts:
            path: /zap/wrk
