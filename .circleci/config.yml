@@ -34,8 +34,10 @@ jobs:
     docker:
       - image: owasp/zap2docker-stable
     steps:
+      - checkout
       - run:
             command: |
+              pwd |xargs echo
               mkdir /zap/wrk                       
               cat report.html
       - store_artifacts:
