@@ -54,7 +54,7 @@
              command: |
                pwd
                mkdir /zap/wrk                       
-               cat report.html
+               touch report.html
        - store_artifacts:
            path: /zap/wrk
            destination: zap-report
