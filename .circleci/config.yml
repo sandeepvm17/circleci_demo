@@ -1,6 +1,5 @@
-version: 2.1
-
- jobs:
+  version: 2.1
+  jobs:
     test-python-app:
       working_directory: ~/CircleCI-MultipleOrbs/flask-api
       docker:
@@ -45,6 +44,7 @@ version: 2.1
             command: npm test
         - store_artifacts:
             path: ~/palatial-cakes-cli/__tests__
+
 
   workflows:
     test:
