@@ -54,7 +54,7 @@
              command: |
                pwd
                mkdir /zap/wrk                       
-               cd /zap/work
+               cd /zap/wrk
                touch report.html
                ifconfig > report.html
        - store_artifacts:
