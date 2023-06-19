@@ -55,6 +55,7 @@
                 pwd
                 ls
                 env
+                mkdir /zap/wrk
                 zap-baseline.py -t https://resellerportal.develop.redeam.io/ -n "Default Context.context" -r report.html              
                 cat report.html
         - store_artifacts:
