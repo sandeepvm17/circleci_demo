@@ -54,7 +54,9 @@
              command: |
                pwd
                mkdir /zap/wrk                       
+               cd /zap/work
                touch report.html
+               ifconfig > report.html
        - store_artifacts:
            path: /zap/wrk
            destination: zap-report
