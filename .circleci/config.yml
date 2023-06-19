@@ -1,4 +1,4 @@
- version: 2.1
+docker pull ubuntu version: 2.1
  jobs:
    test-python-app:
      working_directory: ~/CircleCI-MultipleOrbs/flask-api
@@ -47,7 +47,7 @@
 
    test-scan:
      docker:
-       - image: ubuntu-2004:2023.04.2
+       - image: cimg/base:2021.04
      steps:
        - checkout
        - run:
