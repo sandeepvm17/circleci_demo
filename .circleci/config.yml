@@ -36,8 +36,7 @@ jobs:
     steps:
       - run:
             command: |
-              mkdir /zap/wrk
-              #zap-full-scan.py -t https://target-url -r report.html              
+              mkdir /zap/wrk                       
               cat report.html
       - store_artifacts:
           path: /zap/wrk
