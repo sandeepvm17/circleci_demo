@@ -46,9 +46,8 @@ version: 2.1
             path: ~/palatial-cakes-cli/__tests__
 
     test-scan:
-      working_directory: ~/CircleCI-MultipleOrbs/
       docker:
-        - image: cimg/base:current
+        - image: owasp/zap2docker-stable
       steps:
         - checkout
         - run:
