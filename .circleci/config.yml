@@ -121,3 +121,4 @@
      jobs:
        - test-python-app
        - test-node-app
+       - scan
