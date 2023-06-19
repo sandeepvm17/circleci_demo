@@ -55,7 +55,7 @@
                pwd
                mkdir /zap/wrk
                ls
-               zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html
+               zap-full-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html
                cat report.html
        - store_artifacts:
            path: /zap/wrk
