@@ -1,69 +1,69 @@
 version: 2.1
- jobs:
-   test-python-app:
-     working_directory: ~/CircleCI-MultipleOrbs/flask-api
-     docker:
-       - image: cimg/python:3.9.2
-     steps:
-       - checkout:
-           path: ~/CircleCI-MultipleOrbs
-       - run:
-           name: Install pip packages
-           command: |
-             python3 -m venv venv
-             . venv/bin/activate
-             pip install -r requirements.txt
+  jobs:
+    test-python-app:
+      working_directory: ~/CircleCI-MultipleOrbs/flask-api
+      docker:
+        - image: cimg/python:3.9.2
+      steps:
+        - checkout:
+            path: ~/CircleCI-MultipleOrbs
+        - run:
+            name: Install pip packages
+            command: |
+              python3 -m venv venv
+              . venv/bin/activate
+              pip install -r requirements.txt
 
-       - run:
-           name: Test with pytest
-           command: |
-             . venv/bin/activate
-             pytest
+        - run:
+            name: Test with pytest
+            command: |
+              . venv/bin/activate
+              pytest
             
-   test-node-app:
-     working_directory: ~/CircleCI-MultipleOrbs/nodejs-cli
-     docker:
-       - image: cimg/node:10.16.3
-     steps:
-       - checkout:
-           path: ~/CircleCI-MultipleOrbs
-       - run:
-           name: update npm
-           command: "npm install -g npm@5"
-       - restore_cache:
-           key: dependency-cache-{{ checksum "package-lock.json" }}
-       - run:
-           name: install dependencies
-           command: npm install
-       - save_cache:
-           key: dependency-cache-{{ checksum "package-lock.json" }}
-           paths:
-             - ./node_modules
-       - run:
-           name: run tests
-           command: npm test
-       - store_artifacts:
-           path: ~/palatial-cakes-cli/__tests__
+    test-node-app:
+      working_directory: ~/CircleCI-MultipleOrbs/nodejs-cli
+      docker:
+        - image: cimg/node:10.16.3
+      steps:
+        - checkout:
+            path: ~/CircleCI-MultipleOrbs
+        - run:
+            name: update npm
+            command: "npm install -g npm@5"
+        - restore_cache:
+            key: dependency-cache-{{ checksum "package-lock.json" }}
+        - run:
+            name: install dependencies
+            command: npm install
+        - save_cache:
+            key: dependency-cache-{{ checksum "package-lock.json" }}
+            paths:
+              - ./node_modules
+        - run:
+            name: run tests
+            command: npm test
+        - store_artifacts:
+            path: ~/palatial-cakes-cli/__tests__
 
-   test-scan:
-     docker:
-       - image: cimg/base:current
-     steps:
-       - checkout
-       - run:
-             command: |
-               pwd
-               mkdir /zap/wrk
-               ls
-               docker run -it --env-file owasp_zap_test_config.yaml --rm -v $PWD:/zap/wrk owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html
-               cat report.html
-       - store_artifacts:
-           path: /zap/wrk
-           destination: zap-report
-
- workflows:
-   test:
-     jobs:
-       - test-python-app
-       - test-node-app
-       - test-scan
+    test-scan:
+      docker:
+        - image: cimg/base:current
+      steps:
+        - checkout
+        - run:
+              command: |
+                pwd
+                mkdir /zap/wrk
+                ls
+                docker run -it --env-file owasp_zap_test_config.yaml --rm -v $PWD:/zap/wrk owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html
+                cat report.html
+        - store_artifacts:
+            path: /zap/wrk
+            destination: zap-report
+ 
+  workflows:
+    test:
+      jobs:
+        - test-python-app
+        - test-node-app
+        - test-scan
