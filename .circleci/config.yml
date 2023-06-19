@@ -45,7 +45,7 @@
         - store_artifacts:
             path: ~/palatial-cakes-cli/__tests__
 
-    scan:
+    test-scan:
       docker:
         - image: cimg/base:current
       steps:
@@ -66,3 +66,4 @@
       jobs:
         - test-python-app
         - test-node-app
+        - test-scan
