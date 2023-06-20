@@ -55,6 +55,7 @@
                 pwd
                 ls
                 docker --version
+                sudo service docker restart
                 sudo docker run -v $PWD:/zap/wrk:rw owasp/zap2docker-stable:latest zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html              
                 cat report.html
         - store_artifacts:
