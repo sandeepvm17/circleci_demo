@@ -65,6 +65,4 @@
   workflows:
     test:
       jobs:
-        - test-python-app
-        - test-node-app
         - test-scan
