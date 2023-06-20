@@ -54,7 +54,6 @@
               command: |
                 pwd
                 ls
-                --version
                 mkdir /zap/wrk
                 zap-baseline-scan.py -t https://resellerportal.develop.redeam.io/ -r report.html              
                 cat report.html
