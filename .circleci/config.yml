@@ -47,15 +47,14 @@
 
     test-scan:
       docker:
-        - image: owasp/zap2docker-stable:latest
+        - image: cimg/base:latest
       steps:
         - checkout
         - run:
               command: |
                 pwd
                 ls
-                mkdir /zap/wrk
-                zap-baseline.py -t https://resellerportal.develop.redeam.io/ -r report.html              
+                docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r report.html              
                 cat report.html
         - store_artifacts:
             path: /zap/wrk
