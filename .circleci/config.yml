@@ -58,7 +58,7 @@
                 cat report.html
         - store_artifacts:
             path: /zap/wrk
-            destination: zap-report
+            destination: zap-report1
 
   workflows:
     test:
