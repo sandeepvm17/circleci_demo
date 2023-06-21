@@ -61,10 +61,12 @@
                 ls
                 docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r report.html              
                 ls
+                cd $(pwd)/zap/wrk/
                 pwd
-        - store_artifacts:
-            path: /zap/wrk
-            destination: zap-report
+                ls
+#        - store_artifacts:
+#            path: /zap/wrk
+#            destination: zap-report
 
   workflows:
     test:
