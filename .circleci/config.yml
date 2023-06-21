@@ -61,7 +61,6 @@
                 ls
                 docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r report.html              
                 ls
-                locate /zap/wrk/
                 whereis report.html
                 pwd
                 ls
