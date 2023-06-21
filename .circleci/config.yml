@@ -50,6 +50,9 @@
         - image: cimg/base:current
       steps:
         - checkout
+        - setup_remote_docker:
+          version: 20.10.14
+          docker_layer_caching: true
         - run:
               command: |
                 pwd
@@ -58,7 +61,7 @@
                 cat report.html
         - store_artifacts:
             path: /zap/wrk
-            destination: zap-report1
+            destination: zap-report
 
   workflows:
     test:
