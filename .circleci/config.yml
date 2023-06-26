@@ -59,7 +59,8 @@
               command: |
                 pwd
                 ls
-                docker run -u root -v $(pwd) -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -c rules -I -r report.html                            
+                cp rules $(pwd):/zap/wrk/
+                docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -c rules -I -r report.html                            
                 ls
                 whereis report.html
                 pwd
