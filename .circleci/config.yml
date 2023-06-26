@@ -59,6 +59,7 @@
               command: |
                 pwd
                 ls
+                sudo systemctl start docker
                 docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r /zap/wrk/report.html                            
                 ls
                 whereis report.html
