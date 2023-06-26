@@ -56,7 +56,7 @@
                 pwd
                 ls
                 mkdir /zap/wrk
-                cp .* /zap/wrk/
+                cp rules /zap/wrk
                 zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -c rules -r report.html
                 whereis report.html
                 ls
