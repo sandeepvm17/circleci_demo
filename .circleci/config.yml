@@ -51,7 +51,7 @@
         - image: owasp/zap2docker-stable
       steps:
         - checkout
-          - path: ~/zap/wrk
+          path: ~/zap/wrk
         - run:
               command: |
                 pwd
