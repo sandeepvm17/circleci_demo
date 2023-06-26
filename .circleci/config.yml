@@ -45,26 +45,43 @@
         - store_artifacts:
             path: ~/palatial-cakes-cli/__tests__
 
-    test-scan:
+
+  test-scan:
       docker:
-        - image: cimg/base:current
+        - image: owasp/zap2docker-stable
       steps:
-        - checkout
-        
-        #- setup_remote_docker:
-        #    version: 20.10.23
-            #docker_layer_caching: true
-            
         - run:
               command: |
                 pwd
                 ls
-                sudo service docker restart
-                docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r /zap/wrk/report.html                            
-                ls
+                mkdir /zap/wrk
+                zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r report.html
                 whereis report.html
-                pwd
                 ls
+        - store_artifacts:
+            path: /zap/wrk
+            destination: zap-report
+          
+#    test-scan:
+#      docker:
+#       - image: cimg/base:current
+#     steps:
+#       - checkout
+#       
+        #- setup_remote_docker:
+        #    version: 20.10.23
+            #docker_layer_caching: true
+            
+#       - run:
+#             command: |
+#               pwd
+#               ls
+#               sudo service docker restart
+#               docker run -u root -v $(pwd):/zap/wrk/:rw -t owasp/zap2docker-stable zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -r /zap/wrk/report.html                            
+#               ls
+#               whereis report.html
+#               pwd
+#               ls
 #        - store_artifacts:
 #            path: /zap/wrk
 #            destination: zap-report
