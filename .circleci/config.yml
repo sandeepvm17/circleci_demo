@@ -56,13 +56,13 @@
                 pwd
                 ls
                 mkdir /zap/wrk
-                cp rules /zap/wrk
-                zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -c rules -r report.html
-                whereis report.html
+                cp rules Context.context /zap/wrk
+                zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -c rules -n Context.context -r report.html
+                cat /zap/wrk/report.html
                 ls
-        - store_artifacts:
-            path: /zap/wrk
-            destination: zap-report
+        #- store_artifacts:
+        #    path: /zap/wrk
+        #    destination: zap-report
           
 #    test-scan:
 #      docker:
