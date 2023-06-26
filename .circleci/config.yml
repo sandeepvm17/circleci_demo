@@ -51,11 +51,12 @@
         - image: owasp/zap2docker-stable
       steps:
         - checkout
+          - path: ~/zap/wrk
         - run:
               command: |
                 pwd
                 ls
-                mkdir /zap/wrk
+                #mkdir /zap/wrk
                 zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -c rules -r report.html
                 whereis report.html
                 ls
