@@ -45,8 +45,7 @@
         - store_artifacts:
             path: ~/palatial-cakes-cli/__tests__
 
-
-    test-scan:
+    test-scan-full:
       docker:
         - image: owasp/zap2docker-stable
       steps:
@@ -57,9 +56,24 @@
                 ls
                 mkdir /zap/wrk
                 cp rules Context.context /zap/wrk
-                zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -c rules -n Context.context -r report.html
+                zap-full-scan.py -t "https://resellerportal.develop.redeam.io" -I -m 1 -c rules -n Context.context -r report.html
                 cat /zap/wrk/report.html
                 ls
+
+#    test-scan:
+#      docker:
+#       - image: owasp/zap2docker-stable
+#     steps:
+#       - checkout          
+#       - run:
+#             command: |
+#               pwd
+#               ls
+#               mkdir /zap/wrk
+#               cp rules Context.context /zap/wrk
+#               zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -c rules -n Context.context -r report.html
+#               cat /zap/wrk/report.html
+#               ls
         #- store_artifacts:
         #    path: /zap/wrk
         #    destination: zap-report
@@ -91,4 +105,4 @@
   workflows:
     test:
       jobs:
-        - test-scan
+        - test-scan-full
