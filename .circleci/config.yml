@@ -102,7 +102,7 @@
 #            path: /zap/wrk
 #            destination: zap-report
 
-  workflows:
-    test:
-      jobs:
-        - test-scan-full
+#  workflows:
+#   test:
+#     jobs:
+#        - test-scan-full
