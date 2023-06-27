@@ -46,17 +46,19 @@
             path: ~/palatial-cakes-cli/__tests__
 
     test-scan-full:
+      working_directory: ~/CircleCI-MultipleOrbs/test
       docker:
         - image: owasp/zap2docker-stable
       steps:
-        - checkout          
+        - checkout:
+            path: ~/CircleCI-MultipleOrbs
         - run:
               command: |
                 pwd
                 ls
                 mkdir /zap/wrk
                 cp rules Context.context /zap/wrk
-                zap-full-scan.py -t "https://resellerportal.develop.redeam.io" -I -m 1 -c rules -n Context.context -r report.html
+                zap-baseline.py -t "https://resellerportal.develop.redeam.io" -I -m 1 -c rules -n Context.context -r report.html
                 cat /zap/wrk/report.html
                 ls
 
@@ -102,7 +104,7 @@
 #            path: /zap/wrk
 #            destination: zap-report
 
-#  workflows:
-#   test:
-#     jobs:
-#        - test-scan-full
+  workflows:
+   test:
+     jobs:
+        - test-scan-full
