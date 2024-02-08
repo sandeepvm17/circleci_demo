@@ -23,7 +23,7 @@
   "homepage": "https://github.com/Mbarak-Mbigo/node-cli-app#readme",
   "dependencies": {
     "commander": "^8.3.0",
-    "inquirer": "^8.2.0",
+    "inquirer": "^8.2.6",
     "inquirer-test": "^2.0.1"
   },
   "devDependencies": {
