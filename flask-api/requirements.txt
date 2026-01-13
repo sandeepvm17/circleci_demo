@@ -15,5 +15,5 @@ pyparsing==3.0.7
 pytest==7.0.1
 requests==2.27.1
 tomli==2.0.1
-urllib3==1.26.8
-Werkzeug==2.0.3
+urllib3==2.6.3
+Werkzeug==3.1.5
